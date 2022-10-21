@@ -96,10 +96,10 @@ public class Episode {
 		this.deletedBy = deletedBy;
 	}
 
-	@Column(name = "del_flg", nullable = false, columnDefinition = "default 0")
+	@Column(name = "del_flg", nullable = false, columnDefinition = "boolean default 0")
 	private boolean delFlg;
 
-	@Column(name = "created_at", nullable = false, columnDefinition = "default CURRENT_TIMESTAMP")
+	@Column(name = "created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	private Date createdAt;
 
 	@Column(name = "created_by", nullable = false)

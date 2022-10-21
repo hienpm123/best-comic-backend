@@ -117,7 +117,7 @@ public class Comic {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "comic_one_type_id")
+	@JoinColumn(name = "comiconetype_id")
 	private ComicOneType comicOneType;
 
 	@Column(name = "name", nullable = false, length = 150)
@@ -129,10 +129,10 @@ public class Comic {
 	@Column(name = "authors", length = 250)
 	private String authors;
 
-	@Column(name = "del_flg", nullable = false, columnDefinition = "default 0")
+	@Column(name = "del_flg", nullable = false, columnDefinition = "boolean default 0")
 	private boolean delFlg;
 
-	@Column(name = "created_at", nullable = false, columnDefinition = "default CURRENT_TIMESTAMP")
+	@Column(name = "created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	private Date createdAt;
 
 	@Column(name = "created_by", nullable = false)

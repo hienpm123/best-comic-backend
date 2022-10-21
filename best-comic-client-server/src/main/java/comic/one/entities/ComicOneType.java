@@ -95,10 +95,10 @@ public class ComicOneType {
 	@Column(name="name", nullable = false, length=150)
 	private String name;
 	
-	@Column(name="del_flg", nullable = false, columnDefinition = "default 0")
+	@Column(name="del_flg", nullable = false, columnDefinition = "boolean default 0")
 	private boolean delFlg;
 	
-	@Column(name="created_at", nullable = false, columnDefinition = "default CURRENT_TIMESTAMP")
+	@Column(name="created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	private Date createdAt;
 	
 	@Column(name="created_by", nullable = false)
@@ -116,7 +116,7 @@ public class ComicOneType {
 	@Column(name="deleted_by", nullable = true)
 	private Long deletedBy;
 	
-	@OneToMany(mappedBy = "comic_one_type", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "comicOneType", cascade = CascadeType.ALL)
 	private Collection<Comic> comics;
 }
 		
