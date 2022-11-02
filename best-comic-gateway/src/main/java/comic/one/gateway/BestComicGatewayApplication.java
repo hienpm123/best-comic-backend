@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.gateway.filter.factory.TokenRelayGatewayFilterFactory;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -18,6 +19,9 @@ public class BestComicGatewayApplication {
 
 	@Autowired
 	private DiscoveryClient discoveryClient;
+	
+	@Autowired
+	private TokenRelayGatewayFilterFactory filterFactory;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BestComicGatewayApplication.class, args);
@@ -26,7 +30,10 @@ public class BestComicGatewayApplication {
 	@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder routeBuilder) {
 		return routeBuilder.routes().route("comic-one-client", r -> {
-			return r.path("/client/v1").uri(serviceUrl());
+			return r.path("/client/v1")
+					.filters(f -> f.filters(filterFactory.apply())
+							.removeRequestHeader("Cookie"))
+					.uri(serviceUrl());
 		}).build();
 	}
 

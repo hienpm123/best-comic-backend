@@ -1,6 +1,16 @@
 spring:
   application:
     name: comic-one-gateway
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 961355618171-5of6iqvmsumcm1cglfcn61d4n0dl5kch.apps.googleusercontent.com
+            clientSecret: 961355618171-5of6iqvmsumcm1cglfcn61d4n0dl5kch.apps.googleusercontent.com
+            redirect-uri: http://localhost:8081/login/oauth2/code/google
+            scope:
+              - profile
 server:
   port: 8081
 eureka:
